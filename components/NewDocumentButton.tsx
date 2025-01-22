@@ -1,9 +1,15 @@
-import { Button } from "./ui/button"
+'use client'
+
+import { Button } from "./ui/button";
+import {useTransition} from "react";
 
 function NewDocumentButton() {
+  const handleCreateNewDocument=()=>{
+
+  }
   return (
-    <Button>New Document</Button>
+    <Button onClick={handleCreateNewDocument}>New Document</Button>
   )
 }
 
-export default NewDocumentButton
+export default NewDocumentButton;
