@@ -1,15 +1,25 @@
 'use client'
 
+import { useRouter } from "next/navigation";
 import { Button } from "./ui/button";
 import {useTransition} from "react";
+import { createNewDocument } from "@/actions/actions";
 
 function NewDocumentButton() {
-  const handleCreateNewDocument=()=>{
+  const[isPending, startTransition]=useTransition();
+  const router=useRouter();
 
+  const handleCreateNewDocument=()=>{
+    startTransition(async()=>{
+      const {docId}=await createNewDocument();
+      router.push(`/doc/${docId}`);
+    })
   }
   return (
-    <Button onClick={handleCreateNewDocument}>New Document</Button>
-  )
+    <Button onClick={handleCreateNewDocument} disabled={isPending}>
+      {isPending?"Creating...":"Create New Document"}
+    </Button>
+  );
 }
 
 export default NewDocumentButton;
