@@ -79,7 +79,8 @@ function Sidebar() {
         <>
             <NewDocumentButton/>
             
-            <div className="flex py-6 flex-col space-y-6 md:max-w-36">
+            {/* my docs */}
+            <div className="flex py-4 flex-col space-y-4 md:max-w-36">
                 {groupedData.owner.length===0?(
                     <h2 className="text-gray-500 font-semibold text-sm">
                         No Documents found!
@@ -95,6 +96,18 @@ function Sidebar() {
                     </>
                 )}
             </div>
+
+            {/* shared with me */}
+            {groupedData.editor.length>0 &&(
+                <>
+                    <h2 className="text-gray-500 font-semibold text-sm">
+                        Shared With Me
+                    </h2>
+                    {groupedData.editor.map((doc)=>(
+                        <SidebarOption key={doc.id} id={doc.id} href={`/doc/${doc.id}`}/>
+                    ))}
+                </>
+            )}
         </>
     );
 
