@@ -15,5 +15,3 @@ const app=getApps().length===0?initializeApp(firebaseConfig):getApp();
 const db=getFirestore(app);
 
 export {db};
-// const app = initializeApp(firebaseConfig);
-// const analytics = getAnalytics(app);
