@@ -11,6 +11,8 @@ function Document({id}:{id:string}) {
   const [input,setInput]=useState("");
   const [isUpdating,startTransition]=useTransition();
 
+  // const isOwner=useOwner(); // custom hooks for this
+
   useEffect(()=>{
     if(data){
       setInput(data.title);
@@ -30,6 +32,7 @@ function Document({id}:{id:string}) {
 
   return (
     <div>
+      {/* NOTE CLASS PROPERTY */}
         <div className="flex max-w-6xl mx-auto justify-between pb-5">
           <form className="flex flex-1 space-x-2" onSubmit={updateTitle}>
             <Input value={input} onChange={(e)=>setInput(e.target.value)}/>
