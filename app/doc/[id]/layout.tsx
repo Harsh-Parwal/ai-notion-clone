@@ -1,12 +1,16 @@
-import React, { Children } from 'react'
+// import React, { Children } from 'react'
 import { auth } from '@clerk/nextjs/server';
+import RoomProvider from '@/components/RoomProvider';
 
-function DocLayout({children,params:{id}}:{children:React.ReactNode;params:{id:string};}){
+function DocLayout({children,params:{id}}:{
+    children:React.ReactNode;
+    params:{id:string};
+}){
     auth.protect(); // check here for error
     return (
-        <div>
+        <RoomProvider roomId={id}>
             {children}
-        </div>
+        </RoomProvider>
     )
 }
 

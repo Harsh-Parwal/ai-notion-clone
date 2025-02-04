@@ -21,7 +21,7 @@ function RoomProvider({roomId,children}:{roomId:string;children:React.ReactNode}
                 {children}
             </LiveCursorProvider>
         </ClientSideSuspense>
-        </RoomProviderWrapper>
+      </RoomProviderWrapper>
     </div>
   )
 }
