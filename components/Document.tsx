@@ -6,13 +6,14 @@ import { updateDoc,doc } from "firebase/firestore";
 import { db } from "@/firebase";
 import { useDocumentData } from "react-firebase-hooks/firestore";
 import Editor from "./Editor";
+import useOwner from "@/lib/useOwner";
+import DeleteDocument from "./DeleteDocument";
 
 function Document({id}:{id:string}) {
   const [data,loading,error]=useDocumentData(doc(db,"documents",id)); 
   const [input,setInput]=useState("");
   const [isUpdating,startTransition]=useTransition();
-
-  // const isOwner=useOwner(); // custom hooks for this
+  const isOwner=useOwner(); // custom hook
 
   useEffect(()=>{
     if(data){
@@ -32,14 +33,21 @@ function Document({id}:{id:string}) {
   };
 
   return (
-    <div>
-      {/* NOTE CLASS PROPERTY */}
+    <div className="flex-1 h-full bg-white p-5">
         <div className="flex max-w-6xl mx-auto justify-between pb-5">
           <form className="flex flex-1 space-x-2" onSubmit={updateTitle}>
             <Input value={input} onChange={(e)=>setInput(e.target.value)}/>
+
             <Button disabled={isUpdating} type="submit">
               {isUpdating?"Updating...":"Update"}
             </Button>
+
+            {isOwner && (
+              <>
+                <DeleteDocument/>
+              </>
+            )}
+
           </form>
         </div>
 
