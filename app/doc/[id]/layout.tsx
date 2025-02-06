@@ -28,8 +28,8 @@ async function DocLayout({
     children: React.ReactNode;
     params: Promise<{ id: string }>; 
 }) {
-    const params = await paramsPromise; // ✅ Await params
-    const authData = await auth(); // ✅ Await auth() properly
+    const params = await paramsPromise;
+    const authData = await auth(); 
 
     if (!authData?.userId) {
         throw new Error("Unauthorized access");
