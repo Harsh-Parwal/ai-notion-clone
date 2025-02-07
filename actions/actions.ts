@@ -32,7 +32,7 @@ export async function createNewDocument(){
 
 export async function deleteDocument(roomId:string){
     auth.protect();
-    console.log("deleteDocument",roomId);
+    // console.log("deleteDocument",roomId);
 
     try{
         await adminDb.collection("documents").doc(roomId).delete();
@@ -49,6 +49,49 @@ export async function deleteDocument(roomId:string){
         await batch.commit();
 
         await liveblocks.deleteRoom(roomId);
+        return {success:true};
+    }catch(error){
+        console.log(error);
+        return {success:false};
+    }
+}
+
+export async function inviteUserToDocument(roomId: string, email: string){
+    auth.protect();
+    // console.log("inviteUserToDocument",roomId,email);
+
+    try{
+        await adminDb
+            .collection("users")
+            .doc(email)
+            .collection("rooms")
+            .doc(roomId)
+            .set({
+                userId:email,
+                role:"editor",
+                createdAt:new Date(),
+                roomId,
+            });
+
+            return {success:true};
+    }catch(error){
+        console.log(error);
+        return {success:false};
+    }
+}
+
+export async function removeUserFromDocument(roomId:string, email:string){
+    auth.protect();
+    // console.log("removeUserFromDocument",roomId,email);
+
+    try{    
+        await adminDb   
+            .collection("users")
+            .doc(email)
+            .collection("rooms")
+            .doc(roomId)
+            .delete();
+
         return {success:true};
     }catch(error){
         console.log(error);

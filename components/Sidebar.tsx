@@ -95,10 +95,9 @@ function Sidebar() {
                         ))}
                     </>
                 )}
-            </div>
 
-            {/* shared with me */}
-            {groupedData.editor.length>0 &&(
+                {/* shared with me */}
+                {groupedData.editor.length>0 &&(
                 <>
                     <h2 className="text-gray-500 font-semibold text-sm">
                         Shared With Me
@@ -108,6 +107,7 @@ function Sidebar() {
                     ))}
                 </>
             )}
+            </div>
         </>
     );
 
