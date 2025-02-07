@@ -9,6 +9,7 @@ import Editor from "./Editor";
 import useOwner from "@/lib/useOwner";
 import DeleteDocument from "./DeleteDocument";
 import InviteUser from "./InviteUser";
+import Avatars from "./Avatars"; 
 import ManageUsers from "./ManageUsers";
 
 
@@ -57,8 +58,7 @@ function Document({id}:{id:string}) {
 
         <div className="flex max-w-6xl mx-auto justify-between items-center mb-5">
           <ManageUsers/>
-          {/* manageUsers */}
-          {/* Avatars */}
+          <Avatars/>
         </div>
 
         <hr className="pb-10"/>
