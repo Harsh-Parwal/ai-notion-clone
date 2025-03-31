@@ -4,7 +4,7 @@ import { useState, useTransition, FormEvent } from "react";
 import { BotIcon, LanguagesIcon } from "lucide-react";
 import { toast } from "sonner";
 import ReactMarkdown from "react-markdown";
-import rehypeRaw from "rehype-raw"; // Ensures proper markdown rendering
+import rehypeRaw from "rehype-raw";
 
 import {
     Dialog,
